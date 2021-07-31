@@ -18,7 +18,7 @@ const authReducer = (state, action) => {
                 is_authenticated: action.payload,
             };
         case "SET_DATA":
-            const { user_id, token, refreshToken } = action.payload;
+            const { token, refreshToken } = action.payload;
             if (token && state.token !== token) storage.set("token", token);
             if (refreshToken && state.refreshToken !== refreshToken) storage.set("token", refreshToken);
             // if (user_id && state.user_id !== user_id) storage.set("user_id", user_id);

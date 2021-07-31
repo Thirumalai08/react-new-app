@@ -6,19 +6,30 @@ function Home() {
     const { user, logoutUser, token } = useContext(AuthContext);
     console.log("User", user);
     const [user_info, setUserInfo] = useState("");
-    const getUserInfo = async () => {
-        const response = await axios({
-            method: "GET",
-            url: `${process.env.REACT_APP_SERVICES_BASE_URL}/api/auth`,
-            headers: {
-                "x-auth-token": `${token}`,
-            },
-        });
-        setUserInfo(response.data);
-    };
+    // const getUserInfo = async () => {
+    //     const response = await axios({
+    //         method: "GET",
+    //         url: `${process.env.REACT_APP_SERVICES_BASE_URL}/api/auth`,
+    //         headers: {
+    //             "x-auth-token": `${token}`,
+    //         },
+    //     });
+    //     setUserInfo(response.data);
+    // };
     console.log(">>>>>>>>>>>.user_info", user_info);
     useEffect(() => {
+        const getUserInfo = async () => {
+            const response = await axios({
+                method: "GET",
+                url: `${process.env.REACT_APP_SERVICES_BASE_URL}/api/auth`,
+                headers: {
+                    "x-auth-token": `${token}`,
+                },
+            });
+            setUserInfo(response.data);
+        };
         getUserInfo();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
         <div>
